@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-import move_files as move
+import file_organaizer as move
 
 
 # Local variables
@@ -52,15 +52,6 @@ print(remotedirectory1)
 print(remotedirectory2)
 
 
-# Checks if remote directories are available
-if not os.path.exists(remotedirectory1):
-    print(f"Remote directory {remotedirectory1} does not exist. Please check the device and configuration.")
-#    remote=1
-    
-if not os.path.exists(remotedirectory2):
-    print(f"Remote directory {remotedirectory2} does not exist. Please check the device and configuration.")
-#    remote=2
-    
 # if os.path.exists(remotedirectory1) and os.path.exists(remotedirectory2):
 #     remote=3
 
@@ -76,3 +67,12 @@ move.move_file(newtolocaldirectory, localdirectory, "mp3")
     
 
 
+# Checks if remote directories are available
+if not os.path.exists(remotedirectory1):
+    print(f"Remote directory {remotedirectory1} does not exist. Please check the device and configuration.")
+#    remote=1
+    
+if not os.path.exists(remotedirectory2):
+    print(f"Remote directory {remotedirectory2} does not exist. Please check the device and configuration.")
+#    remote=2
+    
