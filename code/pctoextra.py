@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-import file_organaizer as move
+from functions import file_organizer as move
 
 
 # Local variables
@@ -19,10 +19,15 @@ remotedirectory2 = ""
 
 
 # Configuration values
-noremote1 = ""
+#noremote1 = ""
+
+#
+
+ruta_config = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'config.ini'))
+
 
 try:
-    with open("config.ini", "r") as file:
+    with open(ruta_config, "r") as file:
         for line in file:
             if "localdirectory" in line:
                 localdirectory = line.split("=")[1].strip()
@@ -45,20 +50,24 @@ finally:
         exit(1)
 
 
-# if os.path.exists(remotedirectory1) and os.path.exists(remotedirectory2):
-#     remote=3
+# print(localdirectory)
+# print(newtolocaldirectory)
+# print(remote1)
+# print(remote2)
+# print(remotedirectory1)
+# print(remotedirectory2)
 
 
-# if not remote:
-#     remote=-1
+# Moves files from newtolocaldirectory to localdirectory
 
 try:
     move.move_file(newtolocaldirectory, localdirectory, "mp3")
 except Exception as e:
     print(f"Error moving files from {newtolocaldirectory} to {localdirectory}: {e}")
 
-# if os.path.exists(remotedirectory1) or os.path.exists(remotedirectory2):
 
+# Copies files from localdirectory to remote directories.
+# And deletes them from remote directories if they do not exist in localdirectory
 
 # Checks if remote directories are available
 if not os.path.exists(remotedirectory1):
