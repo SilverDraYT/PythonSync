@@ -6,20 +6,20 @@ import file_organaizer as move
 
 
 # Local variables
-localdirectory=""
-newtolocaldirectory=""
+localdirectory = ""
+newtolocaldirectory = ""
 
 # Remote variables
-remote1=""
-remote2=""
+remote1 = ""
+remote2 = ""
 
 # Remote directories
-remotedirectory1=""
-remotedirectory2=""
+remotedirectory1 = ""
+remotedirectory2 = ""
 
 
 # Configuration values
-noremote1=""
+noremote1 = ""
 
 try:
     with open("config.ini", "r") as file:
@@ -43,36 +43,34 @@ finally:
     if not localdirectory or not newtolocaldirectory or not remote1 or not remote2 or not remotedirectory1 or not remotedirectory2:
         print("Incomplete configuration. Please ensure all settings are provided in 'config.ini'.")
         exit(1)
-        
-print(localdirectory)
-print(newtolocaldirectory)
-print(remote1)
-print(remote2)
-print(remotedirectory1)
-print(remotedirectory2)
 
 
 # if os.path.exists(remotedirectory1) and os.path.exists(remotedirectory2):
 #     remote=3
 
-    
+
 # if not remote:
 #     remote=-1
 
+try:
+    move.move_file(newtolocaldirectory, localdirectory, "mp3")
+except Exception as e:
+    print(f"Error moving files from {newtolocaldirectory} to {localdirectory}: {e}")
 
-move.move_file(newtolocaldirectory, localdirectory, "mp3")
-
-
-#if os.path.exists(remotedirectory1) or os.path.exists(remotedirectory2):
-    
+# if os.path.exists(remotedirectory1) or os.path.exists(remotedirectory2):
 
 
 # Checks if remote directories are available
 if not os.path.exists(remotedirectory1):
     print(f"Remote directory {remotedirectory1} does not exist. Please check the device and configuration.")
 #    remote=1
-    
+else:
+    move.copy_files(localdirectory, remotedirectory1, "mp3")
+    move.delete_files(localdirectory, remotedirectory1, "mp3")
+
 if not os.path.exists(remotedirectory2):
     print(f"Remote directory {remotedirectory2} does not exist. Please check the device and configuration.")
 #    remote=2
-    
+else:
+    move.copy_files(localdirectory, remotedirectory2, "mp3")
+    move.delete_files(localdirectory, remotedirectory2, "mp3")

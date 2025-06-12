@@ -1,0 +1,10 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+  },
+  "black-formatter.args": [
+    "--line-length=150",
+    "--target-version=py39"
+  ],
+  "editor.rulers": [150]
+}
