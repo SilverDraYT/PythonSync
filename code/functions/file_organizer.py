@@ -1,6 +1,7 @@
 import shutil
 import os
 import glob
+import datetime 
 
 def move_file(origin_directory, destiny_directory, file_extension):
     
@@ -20,7 +21,9 @@ def move_file(origin_directory, destiny_directory, file_extension):
         except Exception as e:
             print(f"Error moving {file_name}: {e}")
             
-            
+
+
+    
 
 def copy_files(origin_directory, destiny_directory, file_extension):
     
@@ -32,9 +35,12 @@ def copy_files(origin_directory, destiny_directory, file_extension):
     for file in files:
         file_name = os.path.basename(file)
         destiny_path = os.path.join(destiny_directory, file_name)
+        origin_file_path = os.path.join(origin_directory, file_name)
         destiny_file_path = os.path.join(destiny_directory, file_name)
 
-        if not os.path.exists(destiny_file_path):        
+        modifyOrigin = datetime.datetime.fromtimestamp(os.path.getmtime(origin_file_path))
+        modifyDestiny = datetime.datetime.fromtimestamp(os.path.getmtime(destiny_file_path))
+        if not os.path.exists(destiny_file_path) or modifyOrigin > modifyDestiny:
             try:
                 shutil.copy(file, destiny_path)
                 print(f"{file_name} copied to {destiny_directory}")
@@ -42,6 +48,10 @@ def copy_files(origin_directory, destiny_directory, file_extension):
                 print(f"Error copying {file_name}: {e}")
         else:
             print(f"{file_name} already exists in {destiny_directory}, skipping copy.")
+
+
+
+
 
 def delete_files(directory_origin, directory_destiny, file_extension):
     # Deletes files from directory_destiny that are not present in directory_origin
