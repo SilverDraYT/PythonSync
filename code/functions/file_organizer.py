@@ -32,13 +32,16 @@ def copy_files(origin_directory, destiny_directory, file_extension):
     for file in files:
         file_name = os.path.basename(file)
         destiny_path = os.path.join(destiny_directory, file_name)
-        
-        try:
-            shutil.copy(file, destiny_path)
-            print(f"Copied {file_name} to {destiny_directory}")
-        except Exception as e:
-            print(f"Error copying {file_name}: {e}")
-            
+        destiny_file_path = os.path.join(destiny_directory, file_name)
+
+        if not os.path.exists(destiny_file_path):        
+            try:
+                shutil.copy(file, destiny_path)
+                print(f"{file_name} copied to {destiny_directory}")
+            except Exception as e:
+                print(f"Error copying {file_name}: {e}")
+        else:
+            print(f"{file_name} already exists in {destiny_directory}, skipping copy.")
 
 def delete_files(directory_origin, directory_destiny, file_extension):
     # Deletes files from directory_destiny that are not present in directory_origin
