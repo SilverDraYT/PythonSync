@@ -43,7 +43,7 @@ def copy_files(origin_directory, destiny_directory, file_extension):
         if not os.path.exists(destiny_file_path) or modifyOrigin > modifyDestiny:
             try:
                 shutil.copy(file, destiny_path)
-                print(f"{file_name} copied to {destiny_directory}")
+                print(f"Copied {file_name} to {destiny_directory}")
             except Exception as e:
                 print(f"Error copying {file_name}: {e}")
         else:
