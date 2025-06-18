@@ -38,8 +38,13 @@ def copy_files(origin_directory, destiny_directory, file_extension):
         origin_file_path = os.path.join(origin_directory, file_name)
         destiny_file_path = os.path.join(destiny_directory, file_name)
 
-        modifyOrigin = datetime.datetime.fromtimestamp(os.path.getmtime(origin_file_path))
-        modifyDestiny = datetime.datetime.fromtimestamp(os.path.getmtime(destiny_file_path))
+        try:            
+            modifyOrigin = datetime.datetime.fromtimestamp(os.path.getmtime(origin_file_path))
+            modifyDestiny = datetime.datetime.fromtimestamp(os.path.getmtime(destiny_file_path))
+        except FileNotFoundError:
+            modifyDestiny=None
+
+
         if not os.path.exists(destiny_file_path) or modifyOrigin > modifyDestiny:
             try:
                 shutil.copy(file, destiny_path)
