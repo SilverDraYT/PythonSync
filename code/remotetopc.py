@@ -2,7 +2,7 @@ import os
 import configparser
 
 from functions import file_organizer as move
-
+from functions import logfile_management as logmanagement
 
 # Local variables
 localdirectory = ""
@@ -37,14 +37,20 @@ finally:
 # * Copy files from remote1 to localdirectory
 
 if os.path.exists(remotedirectory1):
-    move.copy_files(remotedirectory1, localdirectory, "mp3")
-    move.delete_files(remotedirectory1, localdirectory, "mp3")
+    list_copyfiles=move.copy_files(remotedirectory1, localdirectory, "mp3", 0)
+    list_deletefiles=move.delete_files(remotedirectory1, localdirectory, "mp3")
+
+    # Log the copied and deleted files
+    logmanagement.file_write(list_copyfiles, list_deletefiles, localdirectory)
 else:
     print(f"Remote directory {remotedirectory1} does not exist. Skipping copy operation.")
 
 # * Copy files from remote2 to localdirectory
 if os.path.exists(remotedirectory2):
-    move.copy_files(remotedirectory2, localdirectory, "mp3")
-    move.delete_files(remotedirectory2, localdirectory, "mp3")
+    list_copyfiles=move.copy_files(remotedirectory2, localdirectory, "mp3", 0)
+    list_deletefiles=move.delete_files(remotedirectory2, localdirectory, "mp3")
+
+    # Log the copied and deleted files
+    logmanagement.file_write(list_copyfiles, list_deletefiles, localdirectory)
 else:
     print(f"Remote directory {remotedirectory2} does not exist. Skipping copy operation.")
