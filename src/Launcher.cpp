@@ -42,14 +42,12 @@ int main()
         {
             std::cout << "[Synchronizing Local to external...]" << std::endl;
             system("python code\\pctoremote.py");
-            system("pause");
             continue;
         }
         case 2:
         {
             std::cout << "[Synchronizing external to Local...]" << std::endl;
             system("python code\\remotetopc.py");
-            system("pause");
             continue;
         }
         case 3:

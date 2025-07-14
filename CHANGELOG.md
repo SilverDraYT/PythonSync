@@ -2,6 +2,12 @@
 
 This has been started halfway (or almost at the ending of this little proyect so this will start from this last change)
 
+## [] - 00-00-0000
+### [UNRELEASED]
+### Added
+### Changed
+### Fixed
+### Removed
 
 
 ## [1.0.1] - 05-07-2025
