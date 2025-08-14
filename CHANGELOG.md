@@ -2,12 +2,19 @@
 
 This has been started halfway (or almost at the ending of this little proyect so this will start from this last change)
 
-## [] - 00-00-0000
-### [UNRELEASED]
+## [1.1.0] - 14-08-2025
 ### Added
+- Now user can decide how many external devices can be registered. Each one has to be registered by hand (No limits has been tested)
 ### Changed
+- The launcher (made with C++) is replaced with a launcher made in Python / Nvm we go back to C++ launcher
+- The way all the code is accessed has been changed from full files to import functions
+- 'code' folder is now called 'mycode'
 ### Fixed
+- Unecesary space taken by code in both pctoremote and remotetopc
 ### Removed
+
+### Aditional info
+- Mf i understand know this life. The only thing that can keep me sane will be not to fall into insanity
 
 
 ## [1.0.1] - 05-07-2025
